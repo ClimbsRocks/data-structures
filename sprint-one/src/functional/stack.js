@@ -1,4 +1,6 @@
 var Stack = function(){
+
+  // super awesome code with stephan
   var someInstance = {};
 
   // Use an object with numeric keys to store values
