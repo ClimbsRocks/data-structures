@@ -7,6 +7,8 @@ var Queue = function(){
   var maxPosition = 0;
 
   // Implement the methods below
+  var minCounter = 0;
+  var maxCounter = 0;
 
   someInstance.enqueue = function(value){
     storage[maxPosition] = value;
@@ -24,6 +26,7 @@ var Queue = function(){
 
   someInstance.size = function(){
     return maxPosition - minPosition;
+
   };
 
   return someInstance;
