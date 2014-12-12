@@ -4,21 +4,21 @@ var LinkedList = function(){
   list.tail = null;
 
   list.addToTail = function(value){
-    // debugger
+
     var nodeVal = Node(value);
     if(list.head === null) {
       list.head = nodeVal;
-      list.tail = nodeVal;
     } else if(list.tail === list.head) {
       list.head.next = nodeVal;
-      list.tail = nodeVal;
     } else {
       list.tail.next = nodeVal;
-      list.tail = nodeVal;
     }
+
+    list.tail = nodeVal;
   };
 
   list.removeHead = function(){
+    //refactor
     if(list.head === list.tail) {
       var tempReturn = list.head.value;
       var tempHead = list.head.next;
