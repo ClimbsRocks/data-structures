@@ -23,7 +23,15 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.addEdge = function(fromNode, toNode){
-
+  var tempFrom;
+  var tempTo;
+  for (var i = 0; i < this.storage.length; i++) {
+    if(this.storage[i] === fromNode.value) {
+      tempFrom = this.storage[i];
+    } else if(this.storage[i] === toNode.value) {
+      tempTo = this.storage[i];
+    }
+  }
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){

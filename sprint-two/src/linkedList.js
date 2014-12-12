@@ -5,16 +5,16 @@ var LinkedList = function(){
 
   list.addToTail = function(value){
 
-    var nodeVal = Node(value);
+    var newNode = Node(value);
     if(list.head === null) {
-      list.head = nodeVal;
+      list.head = newNode;
     } else if(list.tail === list.head) {
-      list.head.next = nodeVal;
+      list.head.next = newNode;
     } else {
-      list.tail.next = nodeVal;
+      list.tail.next = newNode;
     }
 
-    list.tail = nodeVal;
+    list.tail = newNode;
   };
 
   list.removeHead = function(){
@@ -32,7 +32,11 @@ var LinkedList = function(){
       delete list.head;
       list.head = tempHead;
       return tempReturn;
+    } else {
+      //intentionally do nothing when list.head is null;
     }
+    return tempVal;
+
   };
 
   list.contains = function(target){
@@ -60,6 +64,16 @@ var Node = function(value){
 
   return node;
 };
+
+var testList = LinkedList();
+
+testList.addToTail(1);
+testList.addToTail(2);
+testList.addToTail(3);
+
+
+console.log(testList);
+
 
 /*
  * Complexity: What is the time complexity of the above functions?

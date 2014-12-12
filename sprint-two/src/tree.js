@@ -24,15 +24,27 @@ treeMethods.addChild = function(value){
 
 treeMethods.contains = function(target){
 
- if(this.value === target){
-  return true;
- } else if(this.children.length > 0){
-  for(var i = 0; i < this.children.length; i++){
-    return this.children[i].contains(target);
+ // if (this.value === target) {
+ //  return true;
+ // } else if (this.children.length > 0) {
+ //  for (var i = 0; i < this.children.length; i++) {
+ //    return this.children[i].contains(target);
+ //  }
+ // } else {
+ //    console.log('this runs');
+ //    return false;
+ //  }
+  // debugger;
+  if (this.value === target) {
+    return true;
+  } else {
+    for (var i = 0; i < this.children.length; i++) {
+      if (this.children[i].contains(target)) {
+        return true;
+      }
+    }
   }
- } else {
-    return false;
-  }
+  return false;
 };
 
 
