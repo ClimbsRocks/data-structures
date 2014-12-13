@@ -1,4 +1,5 @@
 var LinkedList = function(){
+  //using functional instantiation to create LinkedList
   var list = {};
   list.head = null;
   list.tail = null;
@@ -6,40 +7,36 @@ var LinkedList = function(){
   list.addToTail = function(value){
 
     var newNode = Node(value);
+    //if there's nothing in the list yet:
     if(list.head === null) {
       list.head = newNode;
+    //if there's only one thing in the list
     } else if(list.tail === list.head) {
       list.head.next = newNode;
+    //in all other cases(more than one node in list)
     } else {
       list.tail.next = newNode;
     }
 
+    //in all cases, the tail points to this newNode
     list.tail = newNode;
   };
 
   list.removeHead = function(){
-    //refactor
-    if(list.head === list.tail) {
-      var tempReturn = list.head.value;
-      var tempHead = list.head.next;
-      delete list.head;
-      list.head = tempHead;
-      list.tail = null;
-      return tempReturn;
-    } else if(list.head !== null) {
-      var tempReturn = list.head.value;
-      var tempHead = list.head.next;
-      delete list.head;
-      list.head = tempHead;
-      return tempReturn;
-    } else {
-      //intentionally do nothing when list.head is null;
-    }
-    return tempVal;
 
+    if(list.head !== null) {
+      var tempReturn = list.head.value;
+      var tempHead = list.head.next;
+      delete list.head;
+      list.head = tempHead;
+      return tempReturn;
+    }
+
+    return tempVal;
   };
 
   list.contains = function(target){
+
     var rContains = function(inNode) {
       if(inNode.value === target) {
         return true;
@@ -64,15 +61,6 @@ var Node = function(value){
 
   return node;
 };
-
-var testList = LinkedList();
-
-testList.addToTail(1);
-testList.addToTail(2);
-testList.addToTail(3);
-
-
-console.log(testList);
 
 
 /*
