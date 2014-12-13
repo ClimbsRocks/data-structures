@@ -42,7 +42,6 @@ Graph.prototype.removeNode = function(node){
 };
 
 Graph.prototype.hasEdge = function(fromNode, toNode){
-  //refactor to only do to the FromNode
   var storedFrom;
   for (var i = 0; i < this.storage.length; i++) {
     if(this.storage[i].value === fromNode) {
@@ -68,8 +67,10 @@ Graph.prototype.addEdge = function(fromNode, toNode){
       tempTo = this.storage[i];
     }
   }
-  tempFrom.edges.push(tempTo);
-  tempTo.edges.push(tempFrom);
+  if(tempFrom && tempTo) {
+    tempFrom.edges.push(tempTo);
+    tempTo.edges.push(tempFrom);
+  }
 
 };
 
@@ -96,8 +97,8 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.forEachNode = function(cb){
+  debugger;
   for(var i = 0; i < this.storage.length; i++) {
-    //this may need to only be called on the node itself, not the node's value
     cb(this.storage[i]);
   }
 };
