@@ -44,6 +44,7 @@ HashTable.prototype.retrieve = function(k){
       return arrayAtIndex[i][1];
     }
   }
+  return null;
 };
 
 HashTable.prototype.remove = function(k){
@@ -52,9 +53,11 @@ HashTable.prototype.remove = function(k){
   if(arrAtIndex.length > 1) {
     for(var i = 0; i < arrAtIndex.length; i++) {
       if(arrAtIndex[i][0] === k) {
-
+        var throwawayCatcher = arrAtIndex.splice(i,1);
       }
     }
+  } else {
+    arrAtIndex = [];
   }
   this._storage.set(i,arrAtIndex);
 };
