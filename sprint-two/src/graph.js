@@ -20,6 +20,7 @@ Graph.prototype.removeNode = function(node){
   for(var i = 0; i < this.storage.length; i++){
     //implement nested for loop to loop through the edges array on each node
     //if that edge is the one we're trying to remove, remove it from that node's edges array as well.
+
   }
 
 
