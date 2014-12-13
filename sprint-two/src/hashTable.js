@@ -4,16 +4,72 @@ var HashTable = function(){
 };
 
 HashTable.prototype.insert = function(k, v){
+  // //refactor to avoid collisions
+  // //Create tuple out of key and value
+  // var tempTuple = [k, v];
+  // var i = getIndexBelowMaxForKey(k, this._limit);
+  // now push that tuple into storage at index i
+  // this._storage.set(i, tempTuple);
+  // //check if something already exists at that index
+  // //
+
+  //1. create tuple
+  //2. find what index in the storage array that tuple should go to
+  //3. find what already exists at that index of the storage array
+  //3a. store what already exists at that index as alreadyAtIndex;
+  //4. check if what's already there is a value (Array) or is null
+  //5. If null, create an array, push the tuple into that array, and set that index equal to this newly created array
+  //6. If not null, push our new tuple into alreadyAtIndex;
+  //7. Set the value of that index equal to our newly pushed alreadyAtIndex
+
+  var newTuple = [k, v];
   var i = getIndexBelowMaxForKey(k, this._limit);
+  var alreadyAtIndex = this._storage.get(i);
+  if(alreadyAtIndex !== undefined){
+    var newVal = alreadyAtIndex.push(newTuple);
+    this._storage.set(i, newVal);
+  } else {
+    var newVal = [];
+    newVal.push(newTuple);
+    this._storage.set(i, newVal);
+  }
+
 };
 
 HashTable.prototype.retrieve = function(k){
-  var i = getIndexBelowMaxForKey(k, this._limit);
-
+  var blackMagicIndex = getIndexBelowMaxForKey(k, this._limit);
+  var returnedArr = this._storage.get(blackMagicIndex);
+  //iterate through returnedArr, which is an array of tuples
+  //check every tuple's 0 index against k
+  //if so, return the 1 index of that tuple
+  //otherwise return null at the very end
+  if(returnedArr !== null){
+    for(var z = 0; z < returnedArr.length; z++){
+      if(returnedArr[z][0] === k){
+        return returnedArr[z][1];
+      }
+    }
+  }
+  return null;
 };
 
 HashTable.prototype.remove = function(k){
+  //what we're doing: take out the key and value from our storage
 
+  //how we're doing it:
+  //get index for key from black magic
+  //use the set function to set the value at that index to null
+  var i = getIndexBelowMaxForKey(k, this._limit);
+  var alreadyAtArr = this._storage.get(i);
+  //this might break for arrays of 0 length;
+  if(alreadyAtArr !== null) {
+    for(var i = 0; i < alreadyAtArr.length; i++) {
+      if(alreadyAtArr[i][0] === k) {
+        alreadyAtArr.splice(i,1);
+      }
+    }
+    this._storage.set(i,alreadyAtArr);
+  }
 };
 
 
