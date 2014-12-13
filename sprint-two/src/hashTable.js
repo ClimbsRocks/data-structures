@@ -8,6 +8,7 @@ HashTable.prototype.resize = function() {
   var nodes = this.getAllNodes();
   this._limit = this._limit*2;
   this._storage = LimitedArray(this._limit);
+  debugger;
   for(var i = 0; i < nodes.length; i++) {
     this.insert(nodes[i][0], nodes[i][1]);
   }
@@ -26,21 +27,27 @@ HashTable.prototype.insert = function(k, v){
   }
   this._storage.set(i, alreadyStored);
   this._thingsStored++;
+
   if(this._thingsStored > .75*this._limit) {
     this.resize();
   }
+
 };
 
 HashTable.prototype.getAllNodes = function() {
+  //i think this builds the nodes array incorrectly;
   debugger;
   var nodes = [];
   for(var i = 0; i < this._limit; i++) {
-    if(this._storage[i].length > 1) {
-      for(var j = 0; j < this._storage[i].length; j++) {
-        nodes.push(this._storage[i][j]);
+    var nodeAtI = this._storage.get(i);
+    if(nodeAtI !== undefined) {
+      if(nodeAtI.length > 1) {
+        for(var j = 0; j < nodeAtI.length; j++) {
+          nodes.push(nodeAtI[j]);
+        }
+      } else {
+        nodes.push(nodeAtI);
       }
-    } else {
-      nodes.push(this._storage[i]);
     }
   }
   return nodes;
