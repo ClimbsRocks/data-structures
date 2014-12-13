@@ -4,7 +4,25 @@ var HashTable = function(){
 };
 
 HashTable.prototype.insert = function(k, v){
-  // debugger;
+  var i = getIndexBelowMaxForKey(k, this._limit);
+};
+
+HashTable.prototype.retrieve = function(k){
+  var i = getIndexBelowMaxForKey(k, this._limit);
+
+};
+
+HashTable.prototype.remove = function(k){
+
+};
+
+//Preston's original code below:
+var HashTable = function(){
+  this._limit = 8;
+  this._storage = LimitedArray(this._limit);
+};
+
+HashTable.prototype.insert = function(k, v){
   var tuple = [k, v];
 
   //make each stored value a tuple of key value pairs
@@ -13,8 +31,9 @@ HashTable.prototype.insert = function(k, v){
   if(alreadyStored !== undefined) {
     alreadyStored.push(tuple);
   } else {
-    this._storage[i] = [tuple];
+    alreadyStored = [tuple];
   }
+  this._storage.set(i, alreadyStored);
 };
 
 HashTable.prototype.retrieve = function(k){
@@ -28,9 +47,16 @@ HashTable.prototype.retrieve = function(k){
 };
 
 HashTable.prototype.remove = function(k){
-  // debugger;
   var i = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.splice(i,1);
+  var arrAtIndex = this._storage.get(i);
+  if(arrAtIndex.length > 1) {
+    for(var i = 0; i < arrAtIndex.length; i++) {
+      if(arrAtIndex[i][0] === k) {
+
+      }
+    }
+  }
+  this._storage.set(i,arrAtIndex);
 };
 
 
