@@ -7,6 +7,7 @@ var BinarySearchTree = function(value) {
   if(this !== null) {
     node.parent = this;
   }
+
   node.insert = function(value) {
     var newTree = BinarySearchTree(value);
     var findPosition = function(node) {
@@ -19,8 +20,20 @@ var BinarySearchTree = function(value) {
     findPosition(node);
   }
 
-  node.contains = function() {
+  node.contains = function(target) {
+    var rContains = function(node){
+      if(node.value === target){
+        return true; // Get to be really happy!
+      } else if(node.left && target < node.value){
+        return rContains(node.left);
+      } else if(node.right && target > node.value){
+        return rContains(node.right);
+      } else {
+        return false;
+      }
+    }
 
+    return rContains(node);
   }
 
   node.depthFirstLog = function(callback) {
@@ -30,41 +43,6 @@ var BinarySearchTree = function(value) {
   return node;
 
 }
-
-// var BinarySearchTree = function(value){
-//   var node = {};
-//   var value = value;
-//   var parent = null;
-//   if(this !== null) {
-//     parent = this;
-//   }
-//   var left = null;
-//   var right = null;
-
-//   var insert = function(value) = {
-//     var newTree = new BinarySearchTree(value);
-
-//     //can likely be refactored using ternary operators
-//     var findPosition = function(node) {
-
-//       if(value < this.value) {
-//         this.left === null ? this.left = newTree : findPosition(this.left);
-//       } else if(value > this.value) {
-//         this.right === null ? this.right = newTree : findPosition(this.right);
-//       }
-//     }
-//     findPosition(this);
-//   }
-
-//   var
-
-//   var
-//   return node;
-
-
-// };
-
-
 
 
 /*
