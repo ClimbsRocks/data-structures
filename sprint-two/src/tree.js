@@ -1,3 +1,4 @@
+//using Functional Shared instantiation
 var Tree = function(value){
   var newTree = {};
 
@@ -23,18 +24,6 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.contains = function(target){
-
- // if (this.value === target) {
- //  return true;
- // } else if (this.children.length > 0) {
- //  for (var i = 0; i < this.children.length; i++) {
- //    return this.children[i].contains(target);
- //  }
- // } else {
- //    console.log('this runs');
- //    return false;
- //  }
-  // debugger;
   if (this.value === target) {
     return true;
   } else {

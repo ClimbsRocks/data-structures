@@ -1,3 +1,4 @@
+//using Pseudoclassical instantiation
 var Graph = function(){
 
   this.storage = [];
